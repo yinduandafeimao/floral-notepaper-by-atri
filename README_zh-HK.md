@@ -1,6 +1,6 @@
 # 花箋 by Atri
 
-花箋 by Atri 是基於原開源項目 [floral-notepaper](https://github.com/Achilng/floral-notepaper) 修改而來的個人增強版桌面便箋工具。
+花箋 by Atri 是基於原開源項目 [floral-notepaper](https://github.com/Achilng/floral-notepaper) 修改而來的個人增強版桌面便箋工具，不是本人开发，是分支大佬的作品，自己提前享用，自用、自用、自用。
 
 本項目基於 **Tauri 2 + React** 構建，保留原項目輕量、優雅、本地化的特點，並按照個人日常記筆記與桌面提醒的使用習慣，加入提醒中心、倒數計時／鬧鐘、自訂鈴聲、背景圖片和磁貼顏色等功能。
 
