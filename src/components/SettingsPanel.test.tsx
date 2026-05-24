@@ -15,6 +15,7 @@ const config = {
   theme: "light" as const,
   fontSize: 14,
   surfaceFontSize: 14,
+  tabIndentSize: 2,
   externalFileAutoSave: true,
 };
 

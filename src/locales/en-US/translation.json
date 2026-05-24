@@ -195,6 +195,7 @@
     "quickNoteShortcut": "Quick Note shortcut",
     "rememberSurfaceSize": "Remember surface size",
     "selectFolder": "Select Folder",
+    "tabIndentSize": "Tab indent width",
     "shortcut": {
       "cancelHint": "Esc to cancel",
       "clickToRecord": "Click to record",

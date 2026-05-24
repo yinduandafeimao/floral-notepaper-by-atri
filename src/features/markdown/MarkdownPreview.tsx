@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import type { Components } from "react-markdown";
 
@@ -45,7 +46,7 @@ interface MarkdownPreviewProps {
   fontSize?: number;
 }
 
-const remarkPlugins = [remarkGfm];
+const remarkPlugins = [remarkGfm, remarkBreaks];
 
 const components: Components = {
   h1: ({ children }) => (

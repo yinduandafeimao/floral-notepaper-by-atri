@@ -343,6 +343,7 @@ export function ReminderPanel({
             onChange={(event) => setMessage(event.target.value)}
             placeholder={DEFAULT_REMINDER_MESSAGE}
             className="w-full min-h-[70px] px-3 py-2 rounded-lg bg-paper-warm/70 border border-paper-deep/40 text-[12px] text-ink-soft placeholder:text-ink-ghost/60 resize-none outline-none focus:border-bamboo/35 focus:bg-cloud transition-colors"
+            data-tab-indent="true"
           />
         </section>
 

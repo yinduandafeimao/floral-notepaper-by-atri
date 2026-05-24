@@ -2000,6 +2000,7 @@ export function MainWindow({
                           placeholder="开始写作……"
                           spellCheck={false}
                           disabled={!selectedId}
+                          data-tab-indent="true"
                         />
                       </div>
                     </div>

@@ -195,6 +195,7 @@
     "quickNoteShortcut": "呼出小窗快捷鍵",
     "rememberSurfaceSize": "記住小窗尺寸",
     "selectFolder": "選擇資料夾",
+    "tabIndentSize": "Tab 縮排空格數",
     "shortcut": {
       "cancelHint": "Esc 取消",
       "clickToRecord": "點擊錄製",

@@ -28,6 +28,8 @@ pub struct AppConfig {
     pub font_size: u32,
     #[serde(default = "default_surface_font_size")]
     pub surface_font_size: u32,
+    #[serde(default = "default_tab_indent_size")]
+    pub tab_indent_size: u32,
     #[serde(default = "default_external_file_auto_save")]
     pub external_file_auto_save: bool,
     #[serde(default)]
@@ -185,13 +187,15 @@ impl NoteStore {
             return Ok(config);
         }
 
-        let config: AppConfig = serde_json::from_str(&fs::read_to_string(path)?)?;
+        let mut config: AppConfig = serde_json::from_str(&fs::read_to_string(path)?)?;
+        config.tab_indent_size = normalize_tab_indent_size(config.tab_indent_size);
         fs::create_dir_all(&config.notes_dir)?;
         Ok(config)
     }
 
-    pub fn save_config(&self, config: AppConfig) -> Result<(), AppError> {
+    pub fn save_config(&self, mut config: AppConfig) -> Result<(), AppError> {
         self.ensure_base_dir()?;
+        config.tab_indent_size = normalize_tab_indent_size(config.tab_indent_size);
         fs::create_dir_all(&config.notes_dir)?;
         write_json_atomic(&self.config_path(), &config)
     }
@@ -467,6 +471,7 @@ impl NoteStore {
             theme: default_theme(),
             font_size: default_font_size(),
             surface_font_size: default_surface_font_size(),
+            tab_indent_size: default_tab_indent_size(),
             external_file_auto_save: default_external_file_auto_save(),
             background_image_path: String::new(),
             background_fit: default_background_fit(),
@@ -742,6 +747,14 @@ fn default_surface_font_size() -> u32 {
     14
 }
 
+fn default_tab_indent_size() -> u32 {
+    2
+}
+
+fn normalize_tab_indent_size(value: u32) -> u32 {
+    value.clamp(1, 8)
+}
+
 fn default_external_file_auto_save() -> bool {
     true
 }
@@ -877,6 +890,7 @@ mod tests {
         assert_eq!(default_config.tile_color, "#f6f3ec");
         assert_eq!(default_config.tile_color_mode, "system");
         assert_eq!(default_config.theme, "system");
+        assert_eq!(default_config.tab_indent_size, 2);
         assert!(default_config.notes_dir.ends_with(r"\notes"));
 
         let custom_notes_dir = store.base_dir().join("custom-notes");
@@ -893,6 +907,7 @@ mod tests {
             theme: "dark".into(),
             font_size: 16,
             surface_font_size: 16,
+            tab_indent_size: 2,
             external_file_auto_save: true,
             background_image_path: String::new(),
             background_fit: "cover".into(),
@@ -939,6 +954,7 @@ mod tests {
         assert_eq!(loaded.theme, "system");
         assert_eq!(loaded.font_size, 14);
         assert_eq!(loaded.surface_font_size, 14);
+        assert_eq!(loaded.tab_indent_size, 2);
     }
 
     #[test]
